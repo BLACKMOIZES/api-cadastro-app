@@ -10,10 +10,17 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true,
+        validate: {
+            isEmail: true,  // Valida que o campo seja um email válido
+        },
     },
     cpf: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true,  // Garante que não haja dois usuários com o mesmo CPF
+        validate: {
+            len: [11, 11],  // Exemplo: CPF deve ter 11 caracteres
+        },
     },
     senha: {
         type: DataTypes.STRING,
